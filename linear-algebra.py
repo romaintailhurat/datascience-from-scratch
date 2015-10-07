@@ -9,6 +9,7 @@ Various notes:
   to k-dimensional vectors
   > representing binary relationship, such as a link between two persons
 """
+from __future__ import division # to avoid the float hack in division !
 import math
 
 # ----- VECTORS
@@ -34,9 +35,9 @@ def scalar_multiply(c, v):
 
 def vector_mean(vectors):
     n = len(vectors)
-    # correction from the book, n must be a float
+    # use that if you dot not use __future__ division !
     c = 1/float(n)
-    return scalar_multiply(c, vector_sum(vectors))
+    return scalar_multiply(1/n, vector_sum(vectors))
 
 def dot(v, w):
     """
@@ -85,7 +86,5 @@ def print_matrix(mat):
     for i in mat:
         print(i)
 
-
-
 ## ----- TESTS
-print_matrix( make_matrix(3, 3, is_diagonal) )
+print( vector_mean([ [2,2,3],[9,9,9] ]) )
