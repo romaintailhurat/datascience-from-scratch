@@ -1,6 +1,10 @@
 """
 Chapter 4
+
+Various notes:
+- python list not to be used in production, they're slow, use NumPy instead
 """
+import math
 
 def vector_add(v, w):
     return [v_i + w_i for v_i, w_i in zip(v, w)]
@@ -34,4 +38,14 @@ def dot(v, w):
     """
     return sum(v_i * w_i for v_i, w_i in zip(v, w))
 
-print( dot( [1,1], [1,1]) )
+def sum_of_squares(v):
+    return dot(v,v)
+
+def magnitude(v):
+    return math.sqrt(sum_of_squares(v))
+
+def distance(v, w):
+    return magnitude(vector_subtract(v, w))
+
+## ----- TESTS
+print( distance( [3,4], [6,8] ) )
