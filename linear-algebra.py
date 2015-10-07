@@ -15,8 +15,23 @@ def vector_sum(vectors):
     return result
 
 def vector_sum_enhanced(vectors):
+    # me enhancing :)
     return reduce(vector_add, vectors)
 
-print (vector_sum([ [1,1,1], [1,1,1], [1,1,1] ]))
+def scalar_multiply(c, v):
+    return [c * v_i for v_i in v]
 
-print( vector_sum_enhanced([ [1,1,1], [1,1,1], [1,1,1] ]))
+def vector_mean(vectors):
+    n = len(vectors)
+    # correction from the book, n must be a float
+    c = 1/float(n)
+    return scalar_multiply(c, vector_sum(vectors))
+
+def dot(v, w):
+    """
+    The dot product of two vectors is the sum of their
+    componentwise products.
+    """
+    return sum(v_i * w_i for v_i, w_i in zip(v, w))
+
+print( dot( [1,1], [1,1]) )
