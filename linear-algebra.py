@@ -75,5 +75,10 @@ def make_matrix(n, m, entry_fn):
 def is_diagonal(i, j):
     return 1 if i == j else 0
 
+def print_matrix(mat):
+    # helper printer =)
+    for i in mat:
+        print(i)
+
 ## ----- TESTS
-print( make_matrix(3, 3, is_diagonal) )
+print_matrix( make_matrix(3, 3, is_diagonal) )
