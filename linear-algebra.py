@@ -3,6 +3,11 @@ Chapter 4
 
 Various notes:
 - python list not to be used in production, they're slow, use NumPy instead
+- matrices will be used for
+  > representing data made of multiple vectors
+  > n x k matrices used to represent a linear function from n-dimensional vectors
+  to k-dimensional vectors
+  > representing binary relationship, such as a link between two persons
 """
 import math
 
@@ -79,6 +84,8 @@ def print_matrix(mat):
     # helper printer =)
     for i in mat:
         print(i)
+
+
 
 ## ----- TESTS
 print_matrix( make_matrix(3, 3, is_diagonal) )
