@@ -6,6 +6,8 @@ Various notes:
 """
 import math
 
+# ----- VECTORS
+
 def vector_add(v, w):
     return [v_i + w_i for v_i, w_i in zip(v, w)]
 
@@ -47,5 +49,31 @@ def magnitude(v):
 def distance(v, w):
     return magnitude(vector_subtract(v, w))
 
+# ----- MATRICES
+
+A = [[1,2],
+     [3,4],
+     [5,6]]
+
+B = [[1,2,3],
+     [4,5,6]]
+
+def shape(mat):
+    num_rows = len(mat)
+    num_cols = len(mat[0]) if mat else 0
+    return num_rows, num_cols
+
+def get_row(mat, i):
+    return mat[i]
+
+def get_column(mat, j):
+    return [mat_i for mat_i in mat]
+
+def make_matrix(n, m, entry_fn):
+    return [[entry_fn(i, j) for j in range (m)] for i in range(n)]
+
+def is_diagonal(i, j):
+    return 1 if i == j else 0
+
 ## ----- TESTS
-print( distance( [3,4], [6,8] ) )
+print( make_matrix(3, 3, is_diagonal) )
