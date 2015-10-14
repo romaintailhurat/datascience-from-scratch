@@ -1,8 +1,15 @@
 """
 Chapter 5
 """
+
 from __future__ import division
 from collections import Counter
+from random import randint
+import linear_algebra as lin
+import math
+
+DATA = [ randint(0,100) for x in range(1000) ]
+DATA_2 = [ randint(0,100) for x in range(1000) ]
 
 def mean(x):
     return sum(x) / len(x)
@@ -30,7 +37,41 @@ def mode(x):
     max_count = max(counts.values())
     return [ x_i for x_i, count in counts.iteritems() if count == max_count ]
 
-## ----- TESTS
+def data_range(x):
+    return max(x) - min(x)
 
-print(quantile([1,2,2,56], 0.5))
-print(mode([1,2,2,56]))
+def de_mean(x):
+    x_bar = mean(x)
+    return [x_i - x_bar for x_i in x]
+
+def variance(x):
+    n = len(x)
+    deviations = de_mean(x)
+    return lin.sum_of_squares(deviations) / (n - 1)
+
+def standard_deviation(x):
+    return math.sqrt(variance(x))
+
+def interquartile_range(x):
+    """ more robust than standard deviation """
+    return quantile(x, 0.75) - quantile(x, 0.25)
+
+def covariance(x, y):
+    n = len(x)
+    return lin.dot(de_mean(x), de_mean(y)) / (n - 1)
+
+def correlation(x, y):
+    stdev_x = standard_deviation(x)
+    stdev_y = standard_deviation(y)
+    if stdev_x > 0 and stdev_y > 0:
+        return covariance(x, y) / stdev_x / stdev_y
+    else:
+        return 0 #if no variation, correlation is zero
+
+## ----- TESTS
+assert quantile(DATA, 0.5) == median(DATA)
+print('Mean : %d' %mean(DATA))
+print('Variance : %d' %variance(DATA))
+print('Standard Deviation : %d' %standard_deviation(DATA))
+print('Interquartile : %d' %interquartile_range(DATA))
+print('Covariance DATA / DATA_2 : {}'.format(covariance(DATA, DATA_2)))
