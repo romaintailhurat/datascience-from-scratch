@@ -1,5 +1,13 @@
 """
 Chapter 5
+
+Notes :
+- correlation is linear correlation, a correlation of 0 doesn't imply
+there is no relation, it can exist a non linear one
+- in addition, correlation tells you nothing about how large the relationship is
+    x = [1 2 3 4]
+    y = [101 102 103 104]
+- Simpson's paradox
 """
 
 from __future__ import division
@@ -69,9 +77,9 @@ def correlation(x, y):
         return 0 #if no variation, correlation is zero
 
 ## ----- TESTS
-assert quantile(DATA, 0.5) == median(DATA)
 print('Mean : %d' %mean(DATA))
 print('Variance : %d' %variance(DATA))
 print('Standard Deviation : %d' %standard_deviation(DATA))
 print('Interquartile : %d' %interquartile_range(DATA))
 print('Covariance DATA / DATA_2 : {}'.format(covariance(DATA, DATA_2)))
+print('correlation DATA / DATA_2 : {}'.format(correlation(DATA, DATA_2)))
